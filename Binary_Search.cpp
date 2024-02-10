@@ -14,17 +14,21 @@ void Mehedi()
         cin >> arr[i];
     sort(arr, arr + n);
 
-    ll low = 0, high = 1e18;
-    while (low < high)
+    ll left = 0, right = n - 1, found = 0;
+    while (left <= right)
     {
-        ll mid = (low + high) / 2;
-
-        if (arr[mid] >= val)
-            low = mid;
+        ll mid = (left + right) / 2;
+        if (arr[mid] > val)
+            right = mid - 1;
+        else if (arr[mid] < val)
+            left = mid + 1;
         else
-            high = mid - 1;
+        {
+            found = 1;
+            break;
+        }
     }
-    cout << low << endl;
+    cout << ((found) ? "YES" : "NO") << endl;
 }
 
 int main()
